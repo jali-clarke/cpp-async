@@ -23,4 +23,22 @@ public:
     }
 };
 
+template<>
+class Async<void>{
+private:
+    std::thread th;
+
+public:
+    template<typename Func, typename ...Args>
+    Async(Func f, Args ...args){
+        th = std::thread([&]{
+            f(args);
+        });
+    }
+
+    void wait(){
+        th.join();
+    }
+};
+
 #endif
