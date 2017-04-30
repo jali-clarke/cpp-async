@@ -20,10 +20,10 @@ int main(){
 
     int count = slowAdd();
     std::cout << "Ideally printed out before slowAdd returns, which should be in about 5 sec\n";
-    std::cout << "slowAdd returned: " << count << '\n\n';
+    std::cout << "slowAdd returned: " << count << "\n\n";
 
     std::cout << "With Async:\n";
     Async<int> countAsync(slowAdd);
     std::cout << "Ideally printed out before slowAdd returns, which should be in about 5 sec\n";
-    std::cout << "slowAdd returned: " << countAsync.wait() << '\n\n';
+    std::cout << "slowAdd returned: " << countAsync.wait() << "\n\n";
 }
