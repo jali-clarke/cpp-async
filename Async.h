@@ -1,25 +1,23 @@
 #ifndef ASYNC_HEADER
 #define ASYNC_HEADER
 
-#include "MVar.h"
-
 template <typename T>
 class Async{
 private:
-    MVar<T> data;
+    T data;
     std::thread th;
 
 public:
     template<typename Func, typename ...Args>
     Async(Func f, Args ...args){
         th = std::thread([&]{
-            data.put(f(args));
+            data = f(args);
         });
     }
 
     const T& wait(){
         th.join();
-        return data.get();
+        return data;
     }
 };
 
