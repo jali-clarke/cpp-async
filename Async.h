@@ -1,8 +1,6 @@
 #ifndef ASYNC_HEADER
 #define ASYNC_HEADER
 
-#include <iostream>
-
 template <typename T>
 class Async{
 private:
@@ -12,7 +10,7 @@ private:
 public:
     template<typename Func, typename ...Args>
     Async(Func f, Args ...args){
-        th = std::thread([&]{
+        th = std::thread([this, f, args...]{
             data = f(args...);
         });
     }
@@ -31,7 +29,7 @@ private:
 public:
     template<typename Func, typename ...Args>
     Async(Func f, Args ...args){
-        th = std::thread([&]{
+        th = std::thread([this, f, args...]{
             f(args...);
         });
     }
