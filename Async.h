@@ -1,6 +1,8 @@
 #ifndef ASYNC_HEADER
 #define ASYNC_HEADER
 
+#include <iostream>
+
 template <typename T>
 class Async{
 private:
