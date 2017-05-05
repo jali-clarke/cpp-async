@@ -29,7 +29,7 @@ private:
 public:
     template<typename Func, typename ...Args>
     Async(Func f, Args ...args){
-        th = std::thread([this, f, args...]{
+        th = std::thread([f, args...]{
             f(args...);
         });
     }
